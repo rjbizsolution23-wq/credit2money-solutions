@@ -1,0 +1,126 @@
+{
+  "last_updated": "2026-11-06",
+  "database_name": "Credit 2 Money 0% APR Business Credit Card & Lender Database",
+  "cards": [
+    {
+      "lender": "Chase Bank",
+      "card_name": "Ink Business Unlimited® Credit Card",
+      "intro_apr": "0% Intro APR for 12 months",
+      "regular_apr": "18.49% - 24.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "Equifax",
+      "min_credit_score": 700,
+      "max_inquiries_6mo": 2,
+      "rules": "Strict 5/24 rule applies (must have under 5 personal accounts opened in last 24 months). Does not report to personal credit. Max credit limit per card up to $50,000.",
+      "best_for": "Round 1 Wave 1 anchor card."
+    },
+    {
+      "lender": "Chase Bank",
+      "card_name": "Ink Business Cash® Credit Card",
+      "intro_apr": "0% Intro APR for 12 months",
+      "regular_apr": "18.49% - 24.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "Equifax",
+      "min_credit_score": 700,
+      "max_inquiries_6mo": 2,
+      "rules": "Strict 5/24 rule applies. 5% cash back on office supplies and telecom. Great companion to Unlimited.",
+      "best_for": "Round 1 Wave 1 companion card."
+    },
+    {
+      "lender": "American Express",
+      "card_name": "The Blue Business® Plus Credit Card",
+      "intro_apr": "0% Intro APR for 12 months",
+      "regular_apr": "18.49% - 26.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "None",
+      "min_credit_score": 680,
+      "max_inquiries_6mo": 4,
+      "rules": "Soft pull if existing Amex personal cardholder! 2x points on all purchases up to $50k/yr. Does not report to personal bureau.",
+      "best_for": "Round 1 Wave 1 instant approval card without a hard inquiry if already with Amex."
+    },
+    {
+      "lender": "American Express",
+      "card_name": "Blue Business Cash™ Card",
+      "intro_apr": "0% Intro APR for 12 months",
+      "regular_apr": "18.49% - 26.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "None",
+      "min_credit_score": 680,
+      "max_inquiries_6mo": 4,
+      "rules": "Soft pull for existing members. 2% automatic cash back. Great high-limit stacking card.",
+      "best_for": "Round 1 Wave 1 companion."
+    },
+    {
+      "lender": "U.S. Bank",
+      "card_name": "U.S. Bank Business Platinum Card",
+      "intro_apr": "0% Intro APR for 18 billing cycles",
+      "regular_apr": "17.24% - 26.24% Variable",
+      "primary_bureau": "TransUnion",
+      "secondary_bureau": "None",
+      "min_credit_score": 710,
+      "max_inquiries_6mo": 1,
+      "rules": "Strict inquiry sensitive. Pulls TransUnion in most states. 18 full months of 0% interest is industry-leading.",
+      "best_for": "Round 1 Wave 2 TransUnion anchor card."
+    },
+    {
+      "lender": "U.S. Bank",
+      "card_name": "U.S. Bank Triple Reward Visa® Business",
+      "intro_apr": "0% Intro APR for 12 billing cycles",
+      "regular_apr": "18.24% - 27.24% Variable",
+      "primary_bureau": "TransUnion",
+      "secondary_bureau": "None",
+      "min_credit_score": 710,
+      "max_inquiries_6mo": 1,
+      "rules": "Pulls TransUnion. Apply same day as Business Platinum to combine or piggyback inquiry.",
+      "best_for": "Round 1 Wave 2 TransUnion stack."
+    },
+    {
+      "lender": "Bank of America",
+      "card_name": "Bank of America® Business Advantage Unlimited Cash",
+      "intro_apr": "0% Intro APR for 9 billing cycles",
+      "regular_apr": "18.49% - 28.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "TransUnion",
+      "min_credit_score": 700,
+      "max_inquiries_6mo": 3,
+      "rules": "Will approve higher limits ($25k-$50k) if business checking account is opened with $5,000+ deposit prior to application.",
+      "best_for": "High-limit scaling for clients with liquidity."
+    },
+    {
+      "lender": "PNC Bank",
+      "card_name": "PNC BusinessCredit® Visa® Credit Card",
+      "intro_apr": "0% Intro APR for 12 billing cycles",
+      "regular_apr": "17.49% - 25.49% Variable",
+      "primary_bureau": "Experian",
+      "secondary_bureau": "TransUnion",
+      "min_credit_score": 700,
+      "max_inquiries_6mo": 2,
+      "rules": "Must be within PNC branch footprint (Midwest, East Coast, Southeast). Generous starting limits.",
+      "best_for": "Regional Midwest/Mid-Atlantic clients."
+    },
+    {
+      "lender": "Truist Bank",
+      "card_name": "Truist Business Cash Rewards Credit Card",
+      "intro_apr": "0% Intro APR for 12 months",
+      "regular_apr": "17.24% - 26.24% Variable",
+      "primary_bureau": "Equifax",
+      "secondary_bureau": "None",
+      "min_credit_score": 690,
+      "max_inquiries_6mo": 3,
+      "rules": "Primary pull is Equifax! Extremely valuable because Equifax inquiries are rarely burned by other banks.",
+      "best_for": "Round 1 Wave 3 Equifax anchor card."
+    },
+    {
+      "lender": "Citizens Bank",
+      "card_name": "Citizens Business Platinum Mastercard®",
+      "intro_apr": "0% Intro APR for 12 billing cycles",
+      "regular_apr": "18.99% - 27.99% Variable",
+      "primary_bureau": "Equifax",
+      "secondary_bureau": "Experian",
+      "min_credit_score": 700,
+      "max_inquiries_6mo": 2,
+      "rules": "Pulls Equifax in footprint states. Does not report to personal credit.",
+      "best_for": "Wave 3 Equifax stacking companion."
+    }
+  ]
+}

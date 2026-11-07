@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit 2 Money AI Assistant | credit2money.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg2: #0b0b0a;
+      --card: #121210;
+      --card2: #171713;
+      --line: #2a2618;
+      --gold: #f7c948;
+      --gold2: #d99a0b;
+      --gold3: #fff1b0;
+      --lime: #8fe03a;
+      --lime2: #5fb81c;
+      --text: #f5f3ea;
+      --muted: #a8a28f;
+      --danger: #ff5a4f;
+      --gold-grad: linear-gradient(180deg,#fff4c2 0%,#f7c948 38%,#c98a06 70%,#f7c948 100%);
+      --chrome-grad: linear-gradient(180deg,#ffffff 0%,#d9d9d9 40%,#8d8d8d 60%,#e8e8e8 100%);
+      --lime-grad: linear-gradient(180deg,#b8f56a,#8fe03a 45%,#5fb81c);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .c2m-chat-container {
+      width: 100%;
+      max-width: 440px;
+      height: 660px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(247, 201, 72, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header */
+    .c2m-chat-header {
+      background: linear-gradient(180deg, var(--card2) 0%, var(--bg2) 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .c2m-chat-header::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--lime), transparent);
+      opacity: 0.8;
+    }
+
+    .c2m-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .c2m-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--bg);
+      border-radius: 12px;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Exo 2', sans-serif;
+      font-style: italic;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--gold);
+      box-shadow: 0 0 15px rgba(247, 201, 72, 0.25);
+      position: relative;
+    }
+
+    .c2m-status-dot {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 10px;
+      height: 10px;
+      background: var(--lime);
+      border: 2px solid var(--bg);
+      border-radius: 50%;
+    }
+
+    .c2m-header-text h3 {
+      font-family: 'Exo 2', sans-serif;
+      font-style: italic;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.2px;
+      color: var(--text);
+    }
+
+    .c2m-header-text p {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .c2m-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: "Exo 2";
+      font-style: italic;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--lime);
+      padding: 4px 8px;
+      border: 1px solid rgba(143,224,58,.35);
+      background: rgba(143,224,58,.07);
+      border-radius: 4px;
+      transform: skewX(-8deg);
+    }
+
+    .c2m-badge span { transform: skewX(8deg); }
+
+    /* Messages Area */
+    .c2m-chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--bg);
+    }
+
+    .c2m-msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .c2m-bot-msg {
+      align-self: flex-start;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-bottom-left-radius: 3px;
+    }
+
+    .c2m-user-msg {
+      align-self: flex-end;
+      background: var(--gold-grad);
+      color: #1a1200;
+      border-bottom-right-radius: 3px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(247, 201, 72, 0.2);
+    }
+
+    .c2m-quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .c2m-action-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: "Exo 2";
+      font-style: italic;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border: 0;
+      cursor: pointer;
+      clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+      transition: transform 0.15s, filter 0.2s;
+    }
+
+    .c2m-action-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+    }
+
+    .btn-lime { background: var(--lime-grad); color: #0b1800; }
+    .btn-gold { background: var(--gold-grad); color: #1a1200; }
+    .btn-ghost { background: #1b1a15; color: var(--text); border: 1px solid var(--line); }
+
+    /* Form Fields in Chat */
+    .c2m-lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .c2m-lead-input {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    .c2m-lead-input:focus { border-color: var(--gold); }
+
+    /* Disclaimer */
+    .c2m-disclaimer {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      padding: 8px 14px;
+      background: var(--bg2);
+      border-top: 1px solid var(--line);
+      line-height: 1.4;
+    }
+
+    /* Input Bar */
+    .c2m-chat-input-bar {
+      padding: 12px 16px;
+      background: var(--card2);
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .c2m-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .c2m-input:focus {
+      border-color: var(--gold);
+    }
+
+    .c2m-send-btn {
+      background: var(--gold-grad);
+      color: #1a1200;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 16px;
+      transition: transform 0.15s, filter 0.2s;
+    }
+
+    .c2m-send-btn:hover {
+      transform: scale(1.05);
+      filter: brightness(1.15);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="c2m-chat-container">
+    <!-- Header -->
+    <div class="c2m-chat-header">
+      <div class="c2m-header-left">
+        <div class="c2m-avatar">
+          C2M
+          <div class="c2m-status-dot"></div>
+        </div>
+        <div class="c2m-header-text">
+          <h3>Credit 2 Money AI</h3>
+          <p>Antoine Solomon · Live Assistant</p>
+        </div>
+      </div>
+      <div class="c2m-badge"><span>24/7 ONLINE</span></div>
+    </div>
+
+    <!-- Messages -->
+    <div class="c2m-chat-messages" id="chatMessages">
+      <div class="c2m-msg c2m-bot-msg">
+        👋 Welcome to <strong>Credit 2 Money Solutions</strong>! I'm Antoine's AI assistant.
+        <br><br>
+        How can we help you unlock your capital today?
+        <div class="c2m-quick-actions">
+          <button class="c2m-action-btn btn-lime" onclick="sendQuick('Fix My Credit')">🛡️ Fix My Credit</button>
+          <button class="c2m-action-btn btn-gold" onclick="sendQuick('Get Funded')">💰 Get Funded (0% APR)</button>
+          <button class="c2m-action-btn btn-ghost" onclick="sendQuick('Credit Report')">📊 MyFreeScoreNow</button>
+          <button class="c2m-action-btn btn-ghost" onclick="sendQuick('Book Call')">📞 Book with Antoine</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CROA Disclaimer -->
+    <div class="c2m-disclaimer">
+      Credit 2 Money Solutions INC. · Not a direct lender · CROA Compliant · No upfront credit repair fees.
+    </div>
+
+    <!-- Input Bar -->
+    <form class="c2m-chat-input-bar" id="chatForm" onsubmit="handleSend(event)">
+      <input type="text" class="c2m-input" id="userInput" placeholder="Ask a question or describe your credit..." autocomplete="off">
+      <button type="submit" class="c2m-send-btn">➔</button>
+    </form>
+  </div>
+
+  <script>
+    const GHL_WEBHOOK = "https://services.leadconnectorhq.com/hooks/wPmHei8XKlsEDzS0B59S/webhook-trigger/9d237748-a465-4b13-b07f-866d6f54827c";
+    const BOOKING_CREDIT = "https://api.leadconnectorhq.com/widget/booking/nWuFz08Od9rZrU5ON9Et";
+    const BOOKING_FUNDING = "https://api.leadconnectorhq.com/widget/booking/eZVzPbkRCloFx2ucuJdc";
+    const REPORT_URL = "https://app.myfreescorenow.com/enroll/B02C6182";
+
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+
+    function appendMessage(text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `c2m-msg ${isUser ? 'c2m-user-msg' : 'c2m-bot-msg'}`;
+      msgDiv.innerHTML = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function sendQuick(actionText) {
+      appendMessage(actionText, true);
+      respondToAction(actionText);
+    }
+
+    function handleSend(e) {
+      e.preventDefault();
+      const val = userInput.value.trim();
+      if (!val) return;
+      appendMessage(val, true);
+      userInput.value = '';
+      respondToAction(val);
+    }
+
+    function respondToAction(input) {
+      setTimeout(() => {
+        const lower = input.toLowerCase();
+        if (lower.includes('fix') || lower.includes('credit')) {
+          appendMessage(`We eliminate inaccurate collections, charge-offs, and inquiries using federal Metro 2® factual legal notices.<br><br>First step: Pull your current credit report without hurting your score below, then book a session:<br><br><a href="${REPORT_URL}" target="_blank" class="c2m-action-btn btn-gold" style="display:inline-block;margin-bottom:6px;">📊 Pull Report ($1) ↗</a> <a href="${BOOKING_CREDIT}" target="_blank" class="c2m-action-btn btn-lime" style="display:inline-block;">📅 Book Credit Review ↗</a>`);
+        } else if (lower.includes('fund') || lower.includes('0%')) {
+          appendMessage(`Our <strong>0% APR Credit Card Stacking</strong> program secures $50,000 to $150,000 at 0% interest for 12–21 months with 0% personal credit utilization.<br><br>Book your 1-on-1 Business Funding Strategy session directly with Antoine:<br><br><a href="${BOOKING_FUNDING}" target="_blank" class="c2m-action-btn btn-gold">🚀 Book Funding Strategy ↗</a>`);
+        } else if (lower.includes('report') || lower.includes('myfree')) {
+          appendMessage(`You can pull your official 3-bureau credit report securely with our partner MyFreeScoreNow:<br><br><a href="${REPORT_URL}" target="_blank" class="c2m-action-btn btn-gold">📊 Access MyFreeScoreNow ↗</a>`);
+        } else if (lower.includes('book') || lower.includes('call') || lower.includes('talk')) {
+          appendMessage(`Choose your consultation calendar:<br><br><a href="${BOOKING_CREDIT}" target="_blank" class="c2m-action-btn btn-lime" style="display:inline-block;margin-bottom:6px;">🛡️ Credit Consultation ↗</a><br><a href="${BOOKING_FUNDING}" target="_blank" class="c2m-action-btn btn-gold" style="display:inline-block;">💰 Business Funding Call ↗</a>`);
+        } else {
+          appendMessage(`Thank you! Please enter your Name and Phone Number below so Antoine Solomon can review your inquiry directly:
+            <form class="c2m-lead-form" onsubmit="submitLead(event, '${input}')">
+              <input type="text" id="leadName" class="c2m-lead-input" placeholder="Your Full Name" required>
+              <input type="tel" id="leadPhone" class="c2m-lead-input" placeholder="Your Phone Number" required>
+              <input type="email" id="leadEmail" class="c2m-lead-input" placeholder="Your Email Address" required>
+              <button type="submit" class="c2m-action-btn btn-gold" style="width:100%;padding:10px;">Send To Antoine →</button>
+            </form>
+          `);
+        }
+      }, 500);
+    }
+
+    function submitLead(e, inquiry) {
+      e.preventDefault();
+      const name = document.getElementById('leadName').value;
+      const phone = document.getElementById('leadPhone').value;
+      const email = document.getElementById('leadEmail').value;
+
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, inquiry, source: 'c2m-chat-widget' })
+      }).catch(() => {});
+
+      appendMessage(`✅ Thank you, ${name}! Your information has been securely sent to Antoine. He will be reaching out to ${phone} shortly!`);
+    }
+  </script>
+</body>
+</html>

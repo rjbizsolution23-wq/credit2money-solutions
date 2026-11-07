@@ -1,0 +1,22 @@
+{
+  "name": "credit2money-solutions",
+  "version": "1.0.0",
+  "description": "Sovereign AI, Credit Dispute, 0% APR Funding & Marketing Operating System for Antoine Solomon (credit2money.org)",
+  "author": "Rick Jefferson | RJ Business Solutions <support@rjbusinesssolutions.org>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "python3 cloudflare-worker/build_worker.py",
+    "deploy": "cd cloudflare-worker && wrangler deploy",
+    "dev": "cd cloudflare-worker && wrangler dev"
+  },
+  "keywords": [
+    "credit-repair",
+    "fcra",
+    "metro2",
+    "business-funding",
+    "credit-card-stacking",
+    "ai-agent",
+    "cloudflare-workers"
+  ]
+}

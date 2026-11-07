@@ -1,0 +1,10 @@
+name = "credit2money-solutions"
+main = "src/index.js"
+compatibility_date = "2026-11-06"
+workers_dev = true
+
+[vars]
+CLIENT_NAME = "Antoine Solomon"
+DOMAIN = "credit2money.org"
+PHONE = "+1-414-399-3277"
+ARCHITECT = "Rick Jefferson | RJ Business Solutions"
