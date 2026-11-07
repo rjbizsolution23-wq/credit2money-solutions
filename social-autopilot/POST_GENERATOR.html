@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Social Post & Hook Generator | Credit 2 Money Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --card: #121210;
+      --card2: #171713;
+      --line: #2a2618;
+      --gold: #f7c948;
+      --lime: #8fe03a;
+      --text: #f5f3ea;
+      --muted: #a8a28f;
+      --gold-grad: linear-gradient(180deg,#fff4c2 0%,#f7c948 38%,#c98a06 70%,#f7c948 100%);
+      --lime-grad: linear-gradient(180deg,#b8f56a,#8fe03a 45%,#5fb81c);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+    }
+    .generator-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.85);
+    }
+    h2 {
+      font-family: 'Exo 2', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p.sub { color: var(--muted); font-size: 13.5px; margin-bottom: 24px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-family: 'Exo 2', sans-serif;
+    }
+    select {
+      width: 100%;
+      background: #0b0b0a;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: "Exo 2", sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      transition: transform 0.15s, filter 0.2s;
+    }
+    .btn-gold { background: var(--gold-grad); color: #1a1200; }
+    .btn-lime { background: var(--lime-grad); color: #0b1800; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+    .post-card {
+      margin-top: 32px;
+      background: #0b0b0a;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      display: none;
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .post-preview {
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="generator-container">
+    <h2>📱 C2M Viral Social Media Post Generator</h2>
+    <p class="sub">Generate high-converting credit & funding posts instantly with pre-engineered viral retention hooks.</p>
+
+    <div class="grid-2">
+      <div>
+        <label>Select Content Pillar</label>
+        <select id="pillar">
+          <option value="charge_offs">🛡️ Charge-Offs: Why Paying Them Ruins Your Score</option>
+          <option value="stacking">💳 0% APR Credit Card Stacking: $100k Without Personal Debt</option>
+          <option value="inquiries">⚡ Hard Inquiries: How to Delete in 48 Hours</option>
+          <option value="chase_524">🏛️ Chase 5/24 Rule: The Secret Way Around It</option>
+          <option value="secondaries">🔒 LexisNexis: The Secret Bureau You Must Freeze</option>
+          <option value="flash_sale">⚡ The $100 Credit & Funding Secrets Flash Sale</option>
+        </select>
+      </div>
+      <div>
+        <label>Target Platform Style</label>
+        <select id="platform">
+          <option value="ig_tiktok">Instagram / TikTok (Short, punchy, emojis, high-contrast)</option>
+          <option value="linkedin">LinkedIn / Facebook (Authority, long-form, consulting)</option>
+          <option value="x">X / Twitter (Fast thread & direct punch)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn btn-gold" style="width:100%;" onclick="generatePost()">⚡ Generate Viral Post Now</button>
+
+    <div id="postCard" class="post-card">
+      <div class="post-header">
+        <span style="font-family:'Exo 2'; font-style:italic; font-weight:800; color:var(--lime);">READY TO COPY & PUBLISH</span>
+        <button class="btn btn-lime" style="padding:6px 14px; font-size:11px;" onclick="copyPost()">📋 Copy Text</button>
+      </div>
+      <div id="postOutput" class="post-preview"></div>
+    </div>
+  </div>
+
+  <script>
+    const posts = {
+      charge_offs: `🚨 STOP PAYING OLD CHARGE-OFFS! You are literally dropping your own credit score!
+
+Here is what the debt collection industry prays you never find out:
+
+When you pay off a 3-year-old charge-off, the collection agency updates your account to 'Paid Collection' with today's date. The FICO algorithm treats it like a brand new negative event, and your score drops 20 to 45 points overnight! 📉
+
+Instead, under the Fair Credit Reporting Act (15 U.S.C. § 1681), you demand Metro 2® factual verification. If the bank sold the debt, their balance MUST report $0.00. If they cannot produce the original signed contract with your signature within 30 days, federal law mandates COMPLETE PERMANENT DELETION.
+
+Want our exact Round 1 Charge-Off Audit Checklist?
+👉 Drop a comment with "CLEAN" or tap the link in our bio to grab the $100 Vault at credit2money.org!
+
+#CreditRepair #CreditRestoration #FCRA #Credit2Money #FinancialFreedom #CreditCards #BusinessFunding`,
+
+      stacking: `💰 How our clients secure $50,000 to $150,000 in business capital at 0% interest with $0 personal credit utilization.
+
+Most entrepreneurs think you need 2 years of tax returns and $500,000 in revenue to get bank funding. That’s false.
+
+Tier-1 institutions (Chase, American Express, U.S. Bank) offer commercial credit cards with 12 to 21 months of 0% introductory APR. 
+
+Here is the secret: CREDIT CARD STACKING ⚡
+
+By applying simultaneously in 3 structured waves across Experian, TransUnion, and Equifax on the exact same day, lenders never see each other's inquiries! 
+
+• Chase pulls Experian (Morning)
+• U.S. Bank pulls TransUnion (Afternoon)
+• Truist pulls Equifax (Day 2)
+
+And because these are business credit cards, that $100,000 NEVER reports to your personal credit score or utilization. 0% interest. 0% personal utilization.
+
+Ready to see how much 0% capital your profile qualifies for?
+👉 Tap the link in our bio to run our live Funding Matcher at credit2money.org!
+
+#BusinessCredit #CreditCardStacking #0PercentAPR #CreditToMoney #StartupFunding #Entrepreneurship #CapitalGrowth`,
+
+      inquiries: `Stop letting car dealerships run your credit 15 times in one afternoon! ❌
+
+Did you know that under FCRA 15 U.S.C. § 1681b, a hard inquiry is ONLY permissible if the company has your express written authorization and a certified permissible statutory purpose?
+
+If an inquiry did not result in an open account, it cannot legally remain on your credit disclosure when challenged with proper factual notice.
+
+We use direct federal statutory demands to get unattached hard inquiries wiped from Experian, TransUnion, and Equifax in as little as 48 to 72 hours.
+
+Comment "INQUIRY" below and I’ll send you our rapid removal blueprint, or grab the $100 Vault today at credit2money.org!
+
+#HardInquiries #CreditScore #CreditTips #Credit2Money #FinancialLiteracy #DebtFree`,
+
+      chase_524: `Why having an 800 credit score will STILL get you instantly denied by Chase Bank. 🚫
+
+It’s called the 5/24 Rule. If you have opened 5 or more personal credit cards from ANY bank in the last 24 months, Chase’s algorithm will automatically deny your application without a human underwriter ever looking at it.
+
+Here is the multimillion-dollar workaround:
+Business credit cards from other banks (like Amex, BoA, and US Bank) DO NOT count toward your 5/24 total!
+
+That is why in our Credit Card Stacking Blueprint, we always apply for Chase Ink cards FIRST before touching any other lender. Once approved, you get $25,000 to $50,000 at 0% interest and preserve your profile for the next wave.
+
+Want our full 3-Wave Stacking Blueprint?
+Link in bio at credit2money.org!
+
+#Chase524 #ChaseInk #BusinessFunding #CreditCardHacks #WealthBuilding #Credit2Money`,
+
+      secondaries: `The secret credit bureau that is keeping your collections and public records alive. 👁️
+
+Everyone knows Experian, Equifax, and TransUnion. But when you dispute a negative item with the Big 3, they do not verify it themselves.
+
+They verify it through secondary background data brokers:
+1. LexisNexis Risk Solutions
+2. CoreLogic Credco
+3. Innovis
+4. SageStream
+
+If you freeze your secondary bureaus FIRST using federal privacy statutes, the Big 3 have nowhere to cross-reference the data. When their statutory 30-day investigation clock expires, federal law forces them to DELETE!
+
+Grab our Secondary Bureau Freeze Directory at credit2money.org!
+
+#LexisNexis #CreditDispute #ConsumerLaw #Credit2Money #FinancialEmpowerment #CreditScoreBoost`,
+
+      flash_sale: `⚡ 24-HOUR FLASH SALE: The 0% Business Funding & Credit Secrets Vault is LIVE!
+
+For today only, Antoine Solomon is unlocking the internal vault we use to fix credit profiles and secure 6-figure business funding rounds for just $100 (normally $997).
+
+Here is everything you get:
+✅ The 3-Round Metro 2® Factual Dispute Letters (Inquiries, Collections, Charge-Offs)
+✅ The 0% APR Business Lender Database (Chase, Amex, US Bank rules)
+✅ The 3-Wave Credit Card Stacking Sequencing Blueprint
+✅ The Secondary Bureau Freeze Playbook
+
+This flash sale closes at midnight tonight.
+👉 Head to credit2money.org right now and claim your vault before the price resets!
+
+#FlashSale #CreditRepair #BusinessFunding #CreditSecrets #Credit2Money #AntoineSolomon`
+    };
+
+    function generatePost() {
+      const pillar = document.getElementById('pillar').value;
+      const content = posts[pillar] || posts.charge_offs;
+      document.getElementById('postOutput').textContent = content;
+      document.getElementById('postCard').style.display = 'block';
+      document.getElementById('postCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyPost() {
+      const text = document.getElementById('postOutput').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Post copied to clipboard! Ready to paste into Instagram, LinkedIn, or Facebook!');
+      });
+    }
+  </script>
+</body>
+</html>

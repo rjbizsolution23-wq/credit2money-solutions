@@ -17,11 +17,24 @@ routes_map = {
         "category": "Core Hub",
         "icon": "🏛️"
     },
+    "/valuation": {
+        "title": "Enterprise Valuation & System Appraisal ($52k Value)",
+        "file": "VALUATION_AND_APPRAISAL.md",
+        "category": "Core Hub",
+        "icon": "💰"
+    },
     "/brand": {
         "title": "Official Brand Kit & CROA Compliance Contract",
         "file": "brand/BRAND_SYSTEM.md",
         "category": "Brand & Legal",
         "icon": "🎨"
+    },
+    "/dispute/generator": {
+        "title": "⚡ Live Dispute Letter Builder Tool",
+        "file": "dispute-engine/DISPUTE_GENERATOR.html",
+        "category": "Credit Dispute Suite",
+        "icon": "🛠️",
+        "is_html": True
     },
     "/dispute/manual": {
         "title": "Metro 2® Factual Dispute Strategy Manual",
@@ -77,6 +90,13 @@ routes_map = {
         "category": "Litigation & Bureau Pressure",
         "icon": "⚖️"
     },
+    "/funding/calculator": {
+        "title": "🚀 Live 0% Stacking Matcher & Underwriting Engine",
+        "file": "funding-matrix/FUNDING_CALCULATOR.html",
+        "category": "Funding & Stacking",
+        "icon": "🧮",
+        "is_html": True
+    },
     "/funding/database": {
         "title": "0% APR Business Credit Card & Lender Master Database",
         "file": "funding-matrix/LENDER_DATABASE.json",
@@ -114,6 +134,13 @@ routes_map = {
         "file": "web-assistant/INSTALLATION_GUIDE.md",
         "category": "AI Automation & Web",
         "icon": "🛠️"
+    },
+    "/social/generator": {
+        "title": "⚡ Live Social Post & Hook Generator",
+        "file": "social-autopilot/POST_GENERATOR.html",
+        "category": "Social Auto-Pilot",
+        "icon": "📱",
+        "is_html": True
     },
     "/social/calendar": {
         "title": "30-Day Social Media Content Calendar",
@@ -202,20 +229,33 @@ with open(os.path.join(base_dir, "funding-matrix/LENDER_DATABASE.json"), "r") as
     lender_raw = json.load(f)
 
 worker_code = f"""// Cloudflare Worker for Credit 2 Money Solutions
-// Direct Branding Kit Ingestion from credit2money.org
+// Fully Connected & Wired Operating System
+// Live Webhooks · REST APIs · Interactive Tools · GHL Sync
 // Client: Antoine Solomon | credit2money.org | +1 414-399-3277
 // Engineered exclusively by Rick Jefferson | RJ Business Solutions
 
 const ROUTES_DATA = {json.dumps(contents)};
 const LENDER_RAW_DATA = {json.dumps(lender_raw)};
 const LOGO_DATA_URL = {json.dumps(logo_data_url)};
+const GHL_INBOUND_WEBHOOK = "https://services.leadconnectorhq.com/hooks/wPmHei8XKlsEDzS0B59S/webhook-trigger/9d237748-a465-4b13-b07f-866d6f54827c";
 
 export default {{
   async fetch(request, env, ctx) {{
     const url = new URL(request.url);
     const path = url.pathname.replace(/\\/$/, "") || "/";
 
-    // API Route for raw JSON
+    // Handle CORS preflight
+    if (request.method === "OPTIONS") {{
+      return new Response(null, {{
+        headers: {{
+          "access-control-allow-origin": "*",
+          "access-control-allow-methods": "GET, POST, OPTIONS",
+          "access-control-allow-headers": "Content-Type, Authorization"
+        }}
+      }});
+    }}
+
+    // API Route: Get 0% APR Lender Database (JSON)
     if (path === "/api/lenders") {{
       return new Response(JSON.stringify(LENDER_RAW_DATA, null, 2), {{
         headers: {{
@@ -225,11 +265,73 @@ export default {{
       }});
     }}
 
-    // Direct standalone HTML view for live web assistant
-    if (path === "/web-assistant" && url.searchParams.get("view") === "standalone") {{
-      return new Response(ROUTES_DATA["/web-assistant"].content, {{
-        headers: {{ "content-type": "text/html; charset=utf-8" }}
-      }});
+    // API Route: Live Webhook Relay to HighLevel CRM
+    if (path === "/api/lead-intake" && request.method === "POST") {{
+      try {{
+        const leadData = await request.json();
+        // Forward to Antoine's HighLevel webhook
+        const ghlRes = await fetch(GHL_INBOUND_WEBHOOK, {{
+          method: "POST",
+          headers: {{ "Content-Type": "application/json" }},
+          body: JSON.stringify({{
+            ...leadData,
+            forwarded_by: "Credit2Money Cloudflare Edge Engine",
+            timestamp: new Date().toISOString()
+          }})
+        }});
+        return new Response(JSON.stringify({{ success: true, message: "Lead dispatched to HighLevel CRM" }}), {{
+          headers: {{
+            "content-type": "application/json; charset=utf-8",
+            "access-control-allow-origin": "*"
+          }}
+        }});
+      }} catch (err) {{
+        return new Response(JSON.stringify({{ success: false, error: err.message }}), {{
+          status: 500,
+          headers: {{
+            "content-type": "application/json; charset=utf-8",
+            "access-control-allow-origin": "*"
+          }}
+        }});
+      }}
+    }}
+
+    // API Route: Algorithmic Stacking Calculator API
+    if (path === "/api/stacking-calc" && request.method === "POST") {{
+      try {{
+        const {{ fico = 700, util = 10, inq = 1, llc = true }} = await request.json();
+        let target = 100000;
+        let window = "12 - 18 Months";
+        if (fico >= 740 && util < 10 && inq <= 1) {{
+          target = 125000;
+        }} else if (fico < 680 || util > 30 || inq > 3) {{
+          target = 45000;
+          window = "12 Months";
+        }}
+        return new Response(JSON.stringify({{
+          target_capital: target,
+          apr_intro_window: window,
+          consulting_success_fee: target * 0.1,
+          eligible_cards: LENDER_RAW_DATA.cards.filter(c => c.min_credit_score <= fico)
+        }}), {{
+          headers: {{
+            "content-type": "application/json; charset=utf-8",
+            "access-control-allow-origin": "*"
+          }}
+        }});
+      }} catch (err) {{
+        return new Response(JSON.stringify({{ error: err.message }}), {{ status: 400 }});
+      }}
+    }}
+
+    // Direct standalone HTML view for live tools
+    if (url.searchParams.get("view") === "standalone") {{
+      const standalone = ROUTES_DATA[path];
+      if (standalone && standalone.is_html) {{
+        return new Response(standalone.content, {{
+          headers: {{ "content-type": "text/html; charset=utf-8" }}
+        }});
+      }}
     }}
 
     const routeInfo = ROUTES_DATA[path];
@@ -277,23 +379,16 @@ function renderPage(currentPath, routeInfo) {{
     contentHtml = `
       <div class="interactive-preview-card">
         <div class="preview-header">
-          <h3>⚡ Live Interactive Widget Preview</h3>
-          <a href="/web-assistant?view=standalone" target="_blank" class="preview-link">Open Fullscreen ↗</a>
+          <h3>⚡ Live Interactive Execution Tool</h3>
+          <a href="${{currentPath}}?view=standalone" target="_blank" class="preview-link">Open Fullscreen App ↗</a>
         </div>
-        <iframe src="/web-assistant?view=standalone" class="widget-iframe"></iframe>
-      </div>
-      <div class="code-wrapper" style="margin-top: 24px;">
-        <div class="code-header">
-          <span>Embed Source Code (c2m-chat-widget.html)</span>
-          <button class="btn btn-gold" style="padding: 6px 14px; font-size: 11px;" onclick="copyContent()">Copy Code</button>
-        </div>
-        <pre><code id="rawContent">${{escapeHtml(routeInfo.content)}}</code></pre>
+        <iframe src="${{currentPath}}?view=standalone" class="widget-iframe"></iframe>
       </div>
     `;
   }} else if (routeInfo.is_json) {{
     contentHtml = `
       <div class="json-banner">
-        <div><strong>REST API Endpoint Available:</strong> GET <code>/api/lenders</code> returns raw JSON for apps & CRMs.</div>
+        <div><strong>REST API Endpoint:</strong> GET <code>/api/lenders</code> returns raw JSON for apps & CRMs.</div>
         <a href="/api/lenders" target="_blank" class="btn btn-lime" style="padding: 6px 14px; font-size: 11px;">Test API ↗</a>
       </div>
       <div class="code-wrapper">
@@ -715,7 +810,7 @@ function renderPage(currentPath, routeInfo) {{
     }}
     .widget-iframe {{
       width: 100%;
-      height: 700px;
+      height: 750px;
       border: none;
       display: block;
       background: var(--bg);
@@ -836,4 +931,4 @@ function escapeHtml(text) {{
 with open(os.path.join(worker_dir, "src/index.js"), "w", encoding="utf-8") as f:
     f.write(worker_code)
 
-print("Worker regenerated with live credit2money.org branding kit!")
+print("Connected worker generated with live interactive tools and API endpoints!")

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Dispute Letter Generator | Credit 2 Money Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --card: #121210;
+      --card2: #171713;
+      --line: #2a2618;
+      --gold: #f7c948;
+      --lime: #8fe03a;
+      --text: #f5f3ea;
+      --muted: #a8a28f;
+      --gold-grad: linear-gradient(180deg,#fff4c2 0%,#f7c948 38%,#c98a06 70%,#f7c948 100%);
+      --lime-grad: linear-gradient(180deg,#b8f56a,#8fe03a 45%,#5fb81c);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+    }
+    .builder-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    h2 {
+      font-family: 'Exo 2', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p.sub { color: var(--muted); font-size: 13.5px; margin-bottom: 24px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-family: 'Exo 2', sans-serif;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: #0b0b0a;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: "Exo 2", sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      transition: transform 0.15s, filter 0.2s;
+    }
+    .btn-gold { background: var(--gold-grad); color: #1a1200; }
+    .btn-lime { background: var(--lime-grad); color: #0b1800; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+    .output-card {
+      margin-top: 32px;
+      background: #0b0b0a;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      display: none;
+    }
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    pre {
+      white-space: pre-wrap;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: #050505;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <div class="builder-container">
+    <h2>⚡ C2M Instant Metro 2® Dispute Letter Generator</h2>
+    <p class="sub">Generate legally binding factual dispute notices in seconds with federal statutory citations.</p>
+
+    <form id="disputeForm" onsubmit="generateLetter(event)">
+      <div class="grid-2">
+        <div>
+          <label>Client Full Name</label>
+          <input type="text" id="clientName" placeholder="John Doe" required>
+        </div>
+        <div>
+          <label>Target Credit Bureau</label>
+          <select id="bureau" required>
+            <option value="Experian, P.O. Box 4500, Allen, TX 75013">Experian</option>
+            <option value="Equifax Information Services, P.O. Box 740256, Atlanta, GA 30374">Equifax</option>
+            <option value="TransUnion Consumer Solutions, P.O. Box 2000, Chester, PA 19016">TransUnion</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Client Mailing Address</label>
+          <input type="text" id="clientAddress" placeholder="123 Main St, Milwaukee, WI 53202" required>
+        </div>
+        <div>
+          <label>Last 4 of SSN & Date of Birth</label>
+          <input type="text" id="clientSSN" placeholder="SSN: XXX-XX-1234 | DOB: 01/15/1988" required>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Furnisher / Creditor Name</label>
+          <input type="text" id="creditorName" placeholder="e.g. Portfolio Recovery / Chase" required>
+        </div>
+        <div>
+          <label>Account Number (as reported)</label>
+          <input type="text" id="accountNumber" placeholder="e.g. 5412XXXXXXXX1234" required>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Dispute Type & Strategy</label>
+          <select id="disputeType" required>
+            <option value="charge_off">Charge-Off (Illegal Double Balance & DOFD Error)</option>
+            <option value="inquiry">Unauthorized Hard Inquiry (FCRA § 1681b)</option>
+            <option value="collection">Collection (Absence of Privity & FDCPA § 809)</option>
+            <option value="stall">Round 2 Stall-Breaker (FCRA § 1681i(a)(3))</option>
+            <option value="mov">Round 2B Method of Verification (FCRA § 1681i(a)(7))</option>
+          </select>
+        </div>
+        <div>
+          <label>Certified Mail Tracking # (Optional)</label>
+          <input type="text" id="trackingNumber" placeholder="7021 0000 0000 0000 0000">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 10px;">⚡ Generate Official Legal Notice</button>
+    </form>
+
+    <div id="outputCard" class="output-card">
+      <div class="output-header">
+        <span style="font-family:'Exo 2'; font-style:italic; font-weight:800; color:var(--lime);">✅ OFFICIAL DISPUTE READY</span>
+        <button class="btn btn-lime" style="padding:6px 14px; font-size:11px;" onclick="copyLetter()">📋 Copy To Clipboard</button>
+      </div>
+      <pre id="letterText"></pre>
+    </div>
+  </div>
+
+  <script>
+    function generateLetter(e) {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      const addr = document.getElementById('clientAddress').value;
+      const ssn = document.getElementById('clientSSN').value;
+      const bureau = document.getElementById('bureau').value;
+      const creditor = document.getElementById('creditorName').value;
+      const acct = document.getElementById('accountNumber').value;
+      const type = document.getElementById('disputeType').value;
+      const tracking = document.getElementById('trackingNumber').value || "CERTIFIED MAIL RETURN RECEIPT REQUESTED";
+      const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      let bodyText = "";
+
+      if (type === "charge_off") {
+        bodyText = `SUBJECT: NOTICE OF INACCURATE REPORTING & DEMAND FOR CHARGE-OFF DELETION (FCRA 15 U.S.C. § 1681i & § 1681e(b))
+
+Dear Dispute Department,
+
+I am writing to formally dispute the following inaccurate, unverified charged-off trade line appearing on my consumer credit file:
+
+Creditor / Furnisher: ${creditor}
+Account Number: ${acct}
+
+CRITICAL COMPLIANCE & METRO 2® REPORTING DEFECTS:
+1. Illegal Balance Reporting: This account reports a status of Charged-Off. Under federal reporting guidelines, if this debt was sold, transferred, or charged off for corporate tax deduction, the original creditor cannot continue reporting an active balance. Reporting an open balance while simultaneously reporting a charge-off constitutes unlawful balance inflation under FCRA § 1681e(b).
+2. Date of First Delinquency (DOFD) Inconsistency: The reported DOFD contradicts statutory records and violates Metro 2 Base Segment Field 25 requirements.
+3. Lack of Contractual Proof: You have not provided the original signed agreement bearing my personal signature authorizing this derogatory reporting.
+
+DEMAND: Conduct an immediate substantive reinvestigation pursuant to 15 U.S.C. § 1681i(a)(1). If the data furnisher fails to provide complete, certified physical accounting within thirty (30) calendar days, you are legally obligated to PERMANENTLY DELETE this derogatory item.`;
+      } else if (type === "inquiry") {
+        bodyText = `SUBJECT: DEMAND FOR IMMEDIATE DELETION OF UNAUTHORIZED INQUIRY (15 U.S.C. § 1681b)
+
+Dear Dispute Department,
+
+Upon auditing my consumer disclosure, I discovered the following hard inquiry placed without my express written consent:
+
+Creditor: ${creditor} | Account / Ref: ${acct}
+
+Under 15 U.S.C. § 1681b, a consumer reporting agency may only furnish a credit report if the inquiring party possesses a verified permissible statutory purpose and explicit consumer authorization. I did not apply for credit with this entity, nor did I provide written consent authorizing a hard pull of my credit disclosure.
+
+DEMAND: Under 15 U.S.C. § 1681e(b) and § 1681i, delete this unauthorized inquiry immediately and furnish an updated consumer disclosure reflecting this deletion.`;
+      } else if (type === "collection") {
+        bodyText = `SUBJECT: DISPUTE OF UNVERIFIED COLLECTION ACCOUNT (15 U.S.C. § 1681i & FDCPA § 809)
+
+Dear Dispute Department,
+
+I formally dispute the following unverified collection account appearing on my credit disclosure:
+
+Collection Agency: ${creditor}
+Account Number: ${acct}
+
+DEFECTS & VIOLATIONS:
+1. Absence of Privity: I have never entered into any contract or credit agreement with ${creditor}. Under FDCPA 15 U.S.C. § 1692g, a debt collector must furnish complete verification of chain of title and original contract.
+2. Metro 2 Classification Error: This collection account is being misreported as an open account rather than adhering to Account Type 48.
+
+DEMAND: Reinvestigate and permanently delete this collection account within thirty (30) days as required under 15 U.S.C. § 1681i(a)(5)(A).`;
+      } else if (type === "stall") {
+        bodyText = `SUBJECT: REJECTION OF FRIVOLOUS STALL NOTICE & FINAL DEMAND FOR COMPLIANCE (15 U.S.C. § 1681i(a)(3))
+
+Dear Compliance Officer,
+
+I reject your recent correspondence attempting to characterize my dispute of ${creditor} (Account: ${acct}) as "frivolous" or requesting repetitive identification documents.
+
+Clear copies of my government photo ID and utility bill were provided in my initial certified notice. Under 15 U.S.C. § 1681i(a)(3), an agency may only deem a dispute frivolous if the consumer fails to provide sufficient factual information. I provided specific factual errors regarding this trade line.
+
+Your automated stall letters do not toll the statutory 30-day investigation clock. You must complete your investigation and provide the results immediately, or PERMANENTLY DELETE this item.`;
+      } else if (type === "mov") {
+        bodyText = `SUBJECT: DEMAND FOR METHOD OF VERIFICATION PURSUANT TO 15 U.S.C. § 1681i(a)(6)(B)(iii) & § 1681i(a)(7)
+
+Dear Dispute Director,
+
+Following your notification stating that ${creditor} (Account: ${acct}) was "verified as accurate", I hereby demand the exact Method of Verification used, as guaranteed by federal law.
+
+PURSUANT TO SECTION 1681i(a)(7), YOU ARE MANDATED TO SUPPLY:
+1. The business name, address, and telephone number of the person contacted at ${creditor}.
+2. Copies of the actual physical documents reviewed during the reinvestigation.
+Automated e-OSCAR computerized 2-digit codes do NOT satisfy the statutory standard of a reasonable reinvestigation. Provide this verification within fifteen (15) days or delete this trade line.`;
+      }
+
+      const fullLetter = `${today}
+
+${name}
+${addr}
+${ssn}
+
+To:
+${bureau}
+
+VIA: ${tracking}
+
+${bodyText}
+
+Sincerely,
+
+___________________________________
+${name}
+
+Enclosures: Valid Government Photo ID, Proof of Residence (Utility Bill)`;
+
+      document.getElementById('letterText').innerText = fullLetter;
+      document.getElementById('outputCard').style.display = 'block';
+      document.getElementById('outputCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyLetter() {
+      const text = document.getElementById('letterText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Dispute Letter copied to clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>
